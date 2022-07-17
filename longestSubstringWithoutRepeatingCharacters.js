@@ -28,17 +28,13 @@ s consists of English letters, digits, symbols and spaces.
 */
 
 var lengthOfLongestSubstring = function(s) {
-  let arrOfStrings = []
-  for (let i = 0; i < s.length; i++)
-    arrOfStrings.push(s.slice(i))
-  let arrOfLength = arrOfStrings.map(s => {
-    let arr = []
-    let i = 0
-    while (!arr.includes(s[i])) {
-      arr.push(s[i])
-      i++
-    }
-    return arr.filter(el => el != undefined).length
-  })
-  return arrOfLength.sort((a, b) => b - a)[0] || 0
-};
+    return s.split('').map((_,i) => s.slice(i)).map(str => {
+      let arr = []
+      let i = 0
+      while (!arr.includes(str[i])) {
+        arr.push(str[i])
+        i++
+      }
+      return arr.filter(el => el != undefined).length
+    }).sort((a, b) => b - a)[0] || 0
+  };
